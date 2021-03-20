@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_project/model/AppBarTitle.dart';
-import 'package:graduation_project/routes/edit_article/index.dart';
-import 'package:graduation_project/routes/mine/index.dart';
+import 'package:graduation_project/routes/addTodo/index.dart';
+import 'package:graduation_project/routes/detail/index.dart';
+import 'package:graduation_project/routes/history/index.dart';
+import 'package:graduation_project/routes/record/index.dart';
+import 'package:graduation_project/routes/register/main.dart';
 import 'package:provider/provider.dart';
 import 'package:graduation_project/routes/login/index.dart';
 import 'package:graduation_project/routes/home/index.dart';
 import 'package:graduation_project/common/adaptive.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   runApp(MyApp());
@@ -18,7 +22,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [ChangeNotifierProvider.value(value: AppBarTitle())],
       child: MaterialApp(
-        title: 'bbs',
+        title: '做了么',
         theme: ThemeData(
           primaryColor: Color.fromRGBO(23, 144, 64, 1),
           // visualDensity: VisualDensity.adaptivePlatformDensity,
@@ -27,10 +31,13 @@ class MyApp extends StatelessWidget {
           child: EntryPage(),
         ),
         routes: {
-          "login": (context) => LoginWidget(),
-          "home": (context) => HomePage(),
-          'mine': (context) => MineWidget(),
-          "edit_article": (context) => EditArticelState(),
+          "/register": (context) => RegisterPage(),
+          "/login": (context) => LoginWidget(),
+          "/home": (context) => HomePage(),
+          '/recode': (context) => RecodePage(),
+          "/add_todo": (context) => AddTodo(),
+          '/joinHistory': (context) => HistoryList(),
+          '/todoDetail': (context) => TodoDetail(),
         },
       ),
     );
@@ -47,7 +54,7 @@ class _EntryPageState extends State<EntryPage> {
   int _currentIndex = 0;
   final List<Widget> pages = [
     HomePage(),
-    MineWidget(),
+    RecodePage(),
   ];
 
   final List<String> titles = ['首页', '我'];
@@ -59,7 +66,7 @@ class _EntryPageState extends State<EntryPage> {
     ),
     BottomNavigationBarItem(
       icon: Icon(Icons.person),
-      title: Text('我'),
+      title: Text('记录'),
     )
   ];
 
@@ -72,27 +79,38 @@ class _EntryPageState extends State<EntryPage> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    if (!mounted) {
+      return;
+    }
+    handleToken();
+  }
+
+  void handleToken() async {
+    final prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString('token') ?? '';
+    if (token == '') {
+      Navigator.of(context).pushReplacementNamed('/login');
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     SizeFit.init(context, width: 750, height: 1624);
     return Consumer<AppBarTitle>(
       builder: (context, AppBarTitle appBarTitle, child) {
         return Scaffold(
-          appBar: AppBar(
-            title: Container(
-              child: Text("${appBarTitle.title}"),
-              alignment: Alignment.center,
-            ),
-          ),
           body: pages[_currentIndex],
           bottomNavigationBar: child,
           floatingActionButton: FloatingActionButton(
             child: Icon(
-              Icons.edit,
+              Icons.add,
               color: Colors.white,
             ),
             backgroundColor: Color.fromRGBO(23, 144, 64, 1),
             onPressed: () {
-              Navigator.of(context).pushNamed('edit_article');
+              Navigator.of(context).pushNamed('/add_todo');
             },
           ),
           floatingActionButtonLocation:

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:graduation_project/routes/home/components/InputWidget.dart';
+import 'package:graduation_project/routes/drawer/index.dart';
+import 'package:graduation_project/routes/home/components/home_title.dart';
+import 'package:graduation_project/routes/home/components/todo_list.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key}) : super(key: key);
@@ -11,10 +13,17 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        InputWidget(),
-      ],
+    return Scaffold(
+      drawer: DrawerPage(),
+      appBar: AppBar(),
+      body: Column(
+        children: [
+          HomeTitle(),
+          Expanded(
+            child: TodoList(),
+          ),
+        ],
+      ),
     );
   }
 }
