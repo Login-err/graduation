@@ -23,7 +23,8 @@ abstract class HttpOperator {
   Future<Response<String>> post(String url, Map params, {bool useProxy: false});
 }
 
-String url = 'http://192.168.1.102:7001';
+// String url = 'http://192.168.1.102:7001';
+String url = 'http://1.13.5.130:7001';
 
 getToken() async {
   final prefs = await SharedPreferences.getInstance();
