@@ -38,7 +38,14 @@ class _RegisterPageState extends State<RegisterPage> {
       allowFontScaling: false,
     );
     return Scaffold(
-      appBar: AppBar(title: Text('注册')),
+      appBar: AppBar(
+          centerTitle: true,
+          title: Text(
+            '注册',
+            style: TextStyle(
+              fontSize: ScreenUtil().setSp(30),
+            ),
+          )),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
@@ -92,7 +99,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     child: Text(
                       '注册',
                       style: TextStyle(
-                        fontSize: 40.sp,
+                        fontSize: 34.sp,
                         fontWeight: FontWeight.w400,
                       ),
                     ),

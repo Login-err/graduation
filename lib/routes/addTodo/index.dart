@@ -99,18 +99,20 @@ class _AddTodoState extends State<AddTodo> {
             ],
           ),
           title: Container(
+            padding: EdgeInsets.symmetric(vertical: 10),
             child: Column(
               children: [
                 Text(
                   '添加待办',
                   style: TextStyle(
-                    fontSize: 20,
+                    fontSize: 32.sp,
+                    fontWeight: FontWeight.w400,
                   ),
                 ),
                 Text(
                   nick,
                   style: TextStyle(
-                    fontSize: 16,
+                    fontSize: 28.sp,
                     fontWeight: FontWeight.w200,
                   ),
                 )

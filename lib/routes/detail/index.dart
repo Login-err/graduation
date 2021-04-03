@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/screen_util.dart';
 import 'package:graduation_project/components/dialog.dart';
 import 'package:graduation_project/model/getTodoRsp.dart';
 import 'package:graduation_project/util/http.dart';
@@ -36,12 +37,26 @@ class _TodoDetailState extends State<TodoDetail> {
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(
+      BoxConstraints(
+        maxWidth: MediaQuery.of(context).size.width,
+        maxHeight: MediaQuery.of(context).size.height,
+      ),
+      // 设计尺寸
+      designSize: Size(750, 1624),
+      allowFontScaling: false,
+    );
     return info == null
         ? Container()
         : Scaffold(
             appBar: AppBar(
               centerTitle: true,
-              title: Text('详细信息'),
+              title: Text(
+                '详细信息',
+                style: TextStyle(
+                  fontSize: ScreenUtil().setSp(30),
+                ),
+              ),
             ),
             body: Container(
               padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),

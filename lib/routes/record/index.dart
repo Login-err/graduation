@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/screen_util.dart';
 import 'package:graduation_project/components/lineLinear.dart';
 import 'package:graduation_project/components/panel.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
@@ -88,10 +89,24 @@ class _RecodePageState extends State<RecodePage> {
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(
+      BoxConstraints(
+        maxWidth: MediaQuery.of(context).size.width,
+        maxHeight: MediaQuery.of(context).size.height,
+      ),
+      // 设计尺寸
+      designSize: Size(750, 1624),
+      allowFontScaling: false,
+    );
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Todo数据'),
+        title: Text(
+          'Todo数据',
+          style: TextStyle(
+            fontSize: ScreenUtil().setSp(30),
+          ),
+        ),
       ),
       body: Container(
         child: Column(

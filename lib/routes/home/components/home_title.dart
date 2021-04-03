@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/screen_util.dart';
 import 'package:graduation_project/util/tool.dart';
 
 class HomeTitle extends StatefulWidget {
@@ -37,6 +38,15 @@ class _HomeTitleState extends State<HomeTitle> {
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(
+      BoxConstraints(
+        maxWidth: MediaQuery.of(context).size.width,
+        maxHeight: MediaQuery.of(context).size.height,
+      ),
+      // 设计尺寸
+      designSize: Size(750, 1624),
+      allowFontScaling: false,
+    );
     return Container(
       color: Colors.brown[100],
       padding: EdgeInsets.symmetric(vertical: 20),
@@ -54,7 +64,7 @@ class _HomeTitleState extends State<HomeTitle> {
                   padding: EdgeInsets.only(right: 10),
                   child: Text(
                     formatTime(now.day),
-                    style: TextStyle(fontSize: 28),
+                    style: TextStyle(fontSize: ScreenUtil().setSp(50)),
                   ),
                 ),
                 Column(
@@ -62,11 +72,11 @@ class _HomeTitleState extends State<HomeTitle> {
                   children: [
                     Text(
                       formatTime(now.month),
-                      style: TextStyle(fontSize: 20),
+                      style: TextStyle(fontSize: ScreenUtil().setSp(30)),
                     ),
                     Text(
                       now.year.toString(),
-                      style: TextStyle(fontSize: 20),
+                      style: TextStyle(fontSize: ScreenUtil().setSp(30)),
                     ),
                   ],
                 ),
@@ -80,7 +90,7 @@ class _HomeTitleState extends State<HomeTitle> {
             child: Center(
               child: Text(
                 '${formatTime(now.hour)}:${formatTime(now.minute)}',
-                style: TextStyle(fontSize: 28),
+                style: TextStyle(fontSize: ScreenUtil().setSp(50)),
               ),
             ),
           ),

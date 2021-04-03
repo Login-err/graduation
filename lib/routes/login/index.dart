@@ -34,7 +34,14 @@ class _LoginWidgetState extends State<LoginWidget> {
       allowFontScaling: false,
     );
     return Scaffold(
-      appBar: AppBar(title: Text('登录')),
+      appBar: AppBar(
+          centerTitle: true,
+          title: Text(
+            '登录',
+            style: TextStyle(
+              fontSize: ScreenUtil().setSp(30),
+            ),
+          )),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -93,8 +100,8 @@ class _LoginWidgetState extends State<LoginWidget> {
                       child: Text(
                         '立即注册',
                         style: TextStyle(
-                          fontSize: 40.sp,
-                          fontWeight: FontWeight.w400,
+                          fontSize: 34.sp,
+                          fontWeight: FontWeight.w300,
                           letterSpacing: 10,
                         ),
                       ),
@@ -112,8 +119,8 @@ class _LoginWidgetState extends State<LoginWidget> {
                       child: Text(
                         '立即登录',
                         style: TextStyle(
-                          fontSize: 40.sp,
-                          fontWeight: FontWeight.w400,
+                          fontSize: 34.sp,
+                          fontWeight: FontWeight.w300,
                           letterSpacing: 10,
                         ),
                       ),
